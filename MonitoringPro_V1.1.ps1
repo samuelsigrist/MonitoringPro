@@ -25,7 +25,7 @@ function Get-MemoryUsage ($ComputerName=$ENV:ComputerName) {
     “Free Memory: $TotalFreeMemPercR %”
     } }
 
-    function Get-Temperature {
+   <# function Get-Temperature {
         $TempFormat = "#"
         $TempFile = "temperature"
     
@@ -68,7 +68,7 @@ function Get-MemoryUsage ($ComputerName=$ENV:ComputerName) {
         }
         return $returntemp
     }
- 
+ #>
 <#
     #Param()
 Function Get-downloadSpeed($strUploadUrl)
@@ -158,8 +158,8 @@ $gateway = ipconfig | findstr /i "Standardgateway" | select -last 1
 
 #$netz = get-downloadSpeed
 
-$cpu = Get-Temperature
-$cpuhz = Get-WmiObject win32_processor | select LoadPercentage  |fl #Get-WmiObject MSAcpi_ThermalZoneTemperature -Namespace "root/wmi"
+# $cpu = Get-Temperature
+# $cpuhz = Get-WmiObject win32_processor | select LoadPercentage  |fl #Get-WmiObject MSAcpi_ThermalZoneTemperature -Namespace "root/wmi"
 $pcname = Get-MemoryUsage | findstr /i "Name:"
 $ramuse = Get-MemoryUsage| findstr /i "Ram:"
 $ramfrei = Get-MemoryUsage| findstr /i "Memory:"
@@ -208,7 +208,7 @@ $TextBox2.Font                   = 'Microsoft Sans Serif,10'
 
 $Form.controls.AddRange(@($TextBox1.$TextBox2))
 
-$Form.BackColor = "ffffff"
+$Form.BackColor = "white"
 
 #*******************************************************************************
 
@@ -304,7 +304,7 @@ $Button.Add_Click({$outputBox.Text = Get-Process | Out-String})
 $Form.Controls.Add($Button)
 
 $Button = New-Object System.Windows.Forms.Button
-$Button.Location = New-Object System.Drawing.Size(1600,100)
+$Button.Location = New-Object System.Drawing.Size(1550,100)
 $Button.Size = New-Object System.Drawing.Size(75,25)
 $Button.Text = "HitFix"
 $Button.Add_Click({   $outputbox.Text = Get-HotFix | Format-Table -Property HotFixID, InstalledOn -AutoSize | Out-String})
